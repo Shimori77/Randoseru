@@ -11,10 +11,6 @@ _entry:
     MOV ESP, EBP
 
     ; Call the C entry point
-    MOV EAX, 0x02
-    PUSH EAX
-    MOV EAX, 'Y'
-    PUSH EAX
     CALL _start
 
     ; Should not reach here!

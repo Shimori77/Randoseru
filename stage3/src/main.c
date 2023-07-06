@@ -17,16 +17,10 @@ __attribute__((interrupt)) void handle_div_by_zero(interrupt_frame_t *interrupt_
     interrupt_frame->eip++;
 }
 
-[[noreturn]] void _start(unsigned char uc, unsigned char attr)
+[[noreturn]] void _start()
 {
     init_idt_32();
     set_idt_entry_32(0, handle_div_by_zero, 0x8F);
-
-    uint8_t i = 4;
-    i /= 0;
-
-    volatile unsigned short *vmem = (volatile unsigned short *) 0xB8000;
-    vmem[80] = (attr << 8) | uc;
 
     while (1);
 }
